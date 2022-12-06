@@ -5,6 +5,6 @@
 int main() {
     printf("Hello, World!\n");
     system("PAUSE");
-    printf("lauro esta auterando o repositorio local!");
+    printf("lauro esta auterando o repositorio");
     return 0;
 }
