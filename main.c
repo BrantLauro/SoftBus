@@ -3,6 +3,7 @@
 
 int main() {
     printf("Hello, World!\n");
-    getch();
+    getchar();
+    printf("Lauro está alterando o respositório remoto");
     return 0;
 }
