@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "interface.h"
 #include "viagens.h"
 #include "clientes.h"
@@ -8,24 +7,24 @@
 
 char opcoes[][51] = {"Cadastrar Viagem", "Pesquisar Viagem", "Realizar Venda",
                      "Cadastrar Cliente", "Excluir Cliente", "Configuracoes"};
-int x[] = {22, 52, 83, 21, 53, 84};
+int x[] = {21, 51, 82, 20, 52, 83};
 int y[] = {13, 13, 13, 18, 18, 18};
 
 void TelaPrincipal () {
     TextBackground(BLACK);
     TextColor(WHITE);
     Borda(0, 0, 118, 28, 1, 0);
-    GotoXY(30, 1); printf("________       _____________ ________  ");
-    GotoXY(30, 2); printf("__  ___/______ ___  __/__  /____  __ )____  __________");
-    GotoXY(30, 3); printf("_____ \\ _  __ \\__  /_  _  __/__  __  |_  / / /__  ___/");
-    GotoXY(30, 4); printf("____/ / / /_/ /_  __/  / /_  _  /_/ / / /_/ / _(__  ) ");
-    GotoXY(30, 5); printf("/____/  \\____/ /_/     \\__/  /_____/  \\__,_/  /____/");
-    Borda(19, 12, 20, 2, 0,0);
-    Borda(49, 12, 20, 2, 0,0);
-    Borda(79, 12, 20, 2, 0,0);
-    Borda(19, 17, 20, 2, 0,0);
-    Borda(49, 17, 20, 2, 0,0);
-    Borda(79, 17, 20, 2, 0,0);
+    GotoXY(34, 1); printf("________       _____________ ________  ");
+    GotoXY(34, 2); printf("__  ___/______ ___  __/__  /____  __ )____  __________");
+    GotoXY(34, 3); printf("_____ \\ _  __ \\__  /_  _  __/__  __  |_  / / /__  ___/");
+    GotoXY(34, 4); printf("____/ / / /_/ /_  __/  / /_  _  /_/ / / /_/ / _(__  ) ");
+    GotoXY(34, 5); printf("/____/  \\____/ /_/     \\__/  /_____/  \\__,_/  /____/");
+    Borda(18, 12, 20, 2, 0,0);
+    Borda(48, 12, 20, 2, 0,0);
+    Borda(78, 12, 20, 2, 0,0);
+    Borda(18, 17, 20, 2, 0,0);
+    Borda(48, 17, 20, 2, 0,0);
+    Borda(78, 17, 20, 2, 0,0);
 }
 
 int main() {
