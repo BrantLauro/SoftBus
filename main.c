@@ -1,10 +1,11 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include "interface.h"
+#include "viagens.h"
+#include "clientes.h"
+#include "configuracoes.h"
+#include "vendas.h"
 
 int main() {
-    printf("Hello, World!\n");
-    system("PAUSE");
-    printf("lauro esta auterando o repositorio");
     return 0;
 }
