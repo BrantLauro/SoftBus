@@ -5,7 +5,7 @@
 #ifndef SOFTBUS_CLIENTES_H
 #define SOFTBUS_CLIENTES_H
 
-struct {
+struct clientes{
 
 };
 
