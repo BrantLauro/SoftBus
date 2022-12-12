@@ -5,4 +5,8 @@
 #ifndef SOFTBUS_VENDAS_H
 #define SOFTBUS_VENDAS_H
 
+struct {
+
+};
+
 #endif //SOFTBUS_VENDAS_H
