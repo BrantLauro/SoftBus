@@ -32,6 +32,8 @@ int main() {
     do {
         TelaPrincipal();
         escolha = Menu(opcoes, x, y, escolha, 6);
+        Borda(150, 12, 20, 2, 0,0);
+        Borda(150, 15, 20, 2, 0,0);
         GotoXY(3, 10);
         if(escolha == 0){;
         }

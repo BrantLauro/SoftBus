@@ -5,8 +5,9 @@
 #ifndef SOFTBUS_VENDAS_H
 #define SOFTBUS_VENDAS_H
 
-struct vendas{
+struct vendas {
 
 };
+typedef struct vendas Vendas;
 
 #endif //SOFTBUS_VENDAS_H
