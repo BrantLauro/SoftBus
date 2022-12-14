@@ -47,7 +47,6 @@ int main() {
         }
     } while(escolha != -1);
 
-    GotoXY(0, 25);
+    GotoXY(0, 30);
     return  0;
 }
-

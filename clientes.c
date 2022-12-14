@@ -118,7 +118,6 @@ Clientes DigitarClientes(){
     return C;
 }
 
-
 void AtivarClientes(){
     Clientes C;
     int Escolha = 0;

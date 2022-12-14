@@ -1,7 +1,6 @@
 #include "viagens.h"
 #include "interface.h"
 
-
 FILE *fpViagens;
 
 void AbrirArquivoViagens() {
