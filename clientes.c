@@ -8,7 +8,7 @@
 
 FILE *fpClientes;
 
-Clientes DigitarClientes(){
+/*Clientes DigitarClientes(){
     Clientes C;
 
     GotoXY(27,6);
@@ -27,20 +27,20 @@ Clientes DigitarClientes(){
     scanf("%d", C.Preferencial);
 
     return C;
-}
+}*/
 
 void TelaClientes(){
     Borda(4, 1, 111, 26, 1, 0);
-    GotoXY(17, 6); printf("     Nome: ");
-    GotoXY(17, 9); printf("    Cpf: ");
-    GotoXY(17, 12); printf("Telefone: ");
-    GotoXY(17, 15); printf("Endereco: ");
+    GotoXY(17, 6); printf("        Nome: ");
+    GotoXY(17, 9); printf("         Cpf: ");
+    GotoXY(17, 12); printf("    Telefone: ");
+    GotoXY(17, 15); printf("    Endereco: ");
     GotoXY(17, 18); printf("Preferencial: ");
-    Borda(26, 5, 30, 2, 0, 0);
-    Borda(26, 8, 30, 2, 0, 0);
-    Borda(26, 11, 30, 2, 0, 0);
-    Borda(26, 14, 30, 2, 0, 0);
-    Borda(26, 17, 30, 2, 0, 0);
+    Borda(32, 5, 60, 2, 0, 0);
+    Borda(32, 8, 60, 2, 0, 0);
+    Borda(32, 11, 60, 2, 0, 0);
+    Borda(32, 14, 60, 2, 0, 0);
+    Borda(32, 17, 60, 2, 0, 0);
 }
 
 /*void ImprimirClientes(Clientes C){
@@ -69,7 +69,7 @@ void TelaClientes(){
     printf("%s\n", C.Endereco);
 }*/
 
-void AbrirArquivoClientes(){
+/*void AbrirArquivoClientes(){
     fpClientes = fopen("Clientes.txt", "rb+");
 
     if(fpClientes == NULL){
@@ -116,40 +116,39 @@ int CarregarPaciente(char Dados[][51]){
         n++;
     }
     return n;
-}
+}*/
 
 void AtivarClientes(){
     Clientes P;
     int Escolha = 0;
     char opcoes[][51] = {"Novo","Sair"};
-    int x[] = {29, 42};
-    int y[] = {19, 19};
+    int x[] = {49, 69};
+    int y[] = {23, 23};
 
     char opcoesConfirma[][51] = {"Confirma", "Cancela"};
-    int x1[] = {30, 42};
-    int y1[] = {19, 19};
+    int x1[] = {47, 67};
+    int y1[] = {23, 23};
 
-    AbrirArquivoClientes();
+    //AbrirArquivoClientes();
     do{
         TelaClientes();
-        Borda(16, 18, 10, 2, 0, 0);
-        Borda(28, 18, 10, 2, 0, 0);
-        Borda(40, 18, 10, 2, 0, 0);
-        Borda(52, 18, 10, 2, 0, 0);
-        Escolha = Menu(opcoes, x, y, Escolha, 4);
+        Borda(45, 22, 10, 2, 0, 0);
+        Borda(65, 22, 10, 2, 0, 0);
+        Escolha = Menu(opcoes, x, y, Escolha, 2);
         if(Escolha == 0)
         {
             TelaClientes();
-            P = DigitarClientes();
-            Borda(28, 18, 10, 2, 0, 0);
-            Borda(40, 18, 10, 2, 0, 0);
+            //P = DigitarClientes();
+            Borda(45, 22, 10, 2, 0, 0);
+            Borda(65, 22, 10, 2, 0, 0);
             Escolha = Menu(opcoesConfirma, x1, y1, Escolha, 2);
             if(Escolha == 0)
             {
-                SalvarNovoClientes(P);
-            }
+                //SalvarNovoClientes(P);
+            }else
+                Escolha = 0;
         }
-        if(Escolha == 1)
+        /*if(Escolha == 1)
         {
             TelaClientes();
             P = PesquisarClientes();
@@ -164,7 +163,7 @@ void AtivarClientes(){
             }
             GotoXY(0, 25);
             system("Pause");
-        }
-    }while(Escolha != 3);
-    FecharArquivoClientes();
+        }*/
+    }while(Escolha != 1);
+    //FecharArquivoClientes();
 }
