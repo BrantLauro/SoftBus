@@ -6,26 +6,25 @@
 #include "interface.h"
 
 void TelaViagens() {
-    Borda(4, 1, 111, 26, 1, 0);
-    GotoXY(16, 6);
+    Borda(3, 1, 111, 26, 1, 0);
+    GotoXY(16, 4);
     printf("       Numero: ");
-    Borda(32, 5, 60, 2, 0, 0);
-    GotoXY(16, 9);
+    Borda(32, 3, 60, 2, 0, 0);
+    GotoXY(16, 7);
     printf("        Saida: ");
-    Borda(32, 8, 60, 2, 0, 0);
-    GotoXY(16, 12);
+    Borda(32, 6, 60, 2, 0, 0);
+    GotoXY(16, 10);
     printf("      Destino: ");
-    Borda(32, 11, 60, 2, 0, 0);
-    GotoXY(16, 15);
+    Borda(32, 9, 60, 2, 0, 0);
+    GotoXY(16, 13);
     printf("          Dia: ");
-    Borda(32, 14, 60, 2, 0, 0);
-    GotoXY(16, 18);
+    Borda(32, 12, 60, 2, 0, 0);
+    GotoXY(16, 16);
     printf("         Hora: ");
-    Borda(32, 17, 60, 2, 0, 0);
-    GotoXY(16, 21);
+    Borda(32, 15, 60, 2, 0, 0);
+    GotoXY(16, 19);
     printf("Quilometragem: ");
-    Borda(32, 20, 60, 2, 0, 0);
-
+    Borda(32, 18, 60, 2, 0, 0);
 }
 
 void AtivarViagens() {
@@ -34,19 +33,19 @@ void AtivarViagens() {
     char opcoes[][51] = {"Novo","Sair"};
     char opcoesConfirma[][51] = {"Confirma", "Cancela"};
     //AbrirArquivoPaciente();
-    int x[] = {55, 69};
+    int x[] = {49, 69};
     int y[] = {24, 24};
-    int xConfirma[] = {30, 42};
+    int xConfirma[] = {47, 67};
     do {
         TelaViagens();
-        Borda(51, 23, 10, 2, 0, 0);
+        Borda(45, 23, 10, 2, 0, 0);
         Borda(65, 23, 10, 2, 0, 0);
-        escolha = Menu(opcoes, x, y, escolha, 4);
+        escolha = Menu(opcoes, x, y, escolha, 2);
         if(escolha == 0){
             TelaViagens();
             //V = DigitarViagens();
-            Borda(28, 18, 10, 2, 0, 0);
-            Borda(40, 18, 10, 2, 0, 0);
+            Borda(45, 23, 10, 2, 0, 0);
+            Borda(65, 23, 10, 2, 0, 0);
             escolha = Menu(opcoesConfirma, xConfirma, y, escolha, 2);
             if(escolha == 0){
                 //SalvarNovoPaciente(P);
