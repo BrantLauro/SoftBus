@@ -32,6 +32,11 @@ void TextBackground (int iColor){
     CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
     bufferInfo.wAttributes &= 0x000F;
     SetConsoleTextAttribute (hl, bufferInfo.wAttributes |= (iColor << 4));
+}*/
+
+void TextColoreback(int letras, int fundo){/*para mudar a cor de fundo mude o background*/
+    SetConsoleTextAttribute (GetStdHandle (STD_OUTPUT_HANDLE),
+                             letras + (fundo << 4));
 }
 
 void Borda(int x, int y, int largura, int altura, int tipo, int sombra){
