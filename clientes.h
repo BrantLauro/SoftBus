@@ -6,7 +6,11 @@
 #define SOFTBUS_CLIENTES_H
 
 struct clientes {
-
+    char Nome[51];
+    char CPF[15];
+    char Telefone[21];
+    char Endereco[51];
+    int Preferencial;
 };
 typedef struct clientes Clientes;
 
