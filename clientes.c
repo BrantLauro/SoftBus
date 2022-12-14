@@ -30,7 +30,7 @@ FILE *fpClientes;
 }*/
 
 void TelaClientes(){
-    Borda(4, 1, 111, 26, 1, 0);
+    Borda(3, 1, 111, 26, 1, 0);
     GotoXY(17, 6); printf("        Nome: ");
     GotoXY(17, 9); printf("         Cpf: ");
     GotoXY(17, 12); printf("    Telefone: ");

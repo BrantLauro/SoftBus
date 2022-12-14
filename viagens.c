@@ -27,6 +27,17 @@ void TelaViagens() {
     Borda(32, 18, 60, 2, 0, 0);
 }
 
+Viagens DigitarViagens() {
+    Viagens V;
+    GotoXY(34, 4); scanf("%d", &V.NumeroViagem);
+    GotoXY(34, 7); scanf(" %[^\n]", V.LocalSaida);
+    GotoXY(34, 10); scanf(" %[^\n]", V.LocalDestino);
+    GotoXY(34, 13); scanf(" %[^\n]", V.DiaSaida);
+    GotoXY(34, 16); scanf(" %[^\n]", V.HoraSaida);
+    GotoXY(34, 19); scanf("%lf", &V.Quilometragem);
+    return V;
+}
+
 void AtivarViagens() {
     int escolha = 0;
     Viagens V;
@@ -43,7 +54,7 @@ void AtivarViagens() {
         escolha = Menu(opcoes, x, y, escolha, 2);
         if(escolha == 0){
             TelaViagens();
-            //V = DigitarViagens();
+            V = DigitarViagens();
             Borda(45, 23, 10, 2, 0, 0);
             Borda(65, 23, 10, 2, 0, 0);
             escolha = Menu(opcoesConfirma, xConfirma, y, escolha, 2);
