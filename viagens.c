@@ -8,23 +8,23 @@
 void TelaViagens() {
     Borda(4, 1, 111, 26, 1, 0);
     GotoXY(16, 6);
-    printf("Numero: ");
-    Borda(26, 5, 35, 2, 0, 0);
+    printf("       Numero: ");
+    Borda(32, 5, 60, 2, 0, 0);
     GotoXY(16, 9);
-    printf("Saida: ");
-    Borda(26, 8, 35, 2, 0, 0);
+    printf("        Saida: ");
+    Borda(32, 8, 60, 2, 0, 0);
     GotoXY(16, 12);
-    printf("Destino: ");
-    Borda(26, 11, 35, 2, 0, 0);
+    printf("      Destino: ");
+    Borda(32, 11, 60, 2, 0, 0);
     GotoXY(16, 15);
-    printf("Dia: ");
-    Borda(26, 14, 35, 2, 0, 0);
+    printf("          Dia: ");
+    Borda(32, 14, 60, 2, 0, 0);
     GotoXY(16, 18);
-    printf("Hora: ");
-    Borda(26, 17, 35, 2, 0, 0);
-    GotoXY(16, 20);
+    printf("         Hora: ");
+    Borda(32, 17, 60, 2, 0, 0);
+    GotoXY(16, 21);
     printf("Quilometragem: ");
-    Borda(26, 17, 35, 2, 0, 0);
+    Borda(32, 20, 60, 2, 0, 0);
 
 }
 
@@ -34,13 +34,13 @@ void AtivarViagens() {
     char opcoes[][51] = {"Novo","Sair"};
     char opcoesConfirma[][51] = {"Confirma", "Cancela"};
     //AbrirArquivoPaciente();
-    int x[] = {50, 59};
-    int y[] = {20, 20};
+    int x[] = {55, 69};
+    int y[] = {24, 24};
     int xConfirma[] = {30, 42};
     do {
         TelaViagens();
-        Borda(51, 20, 10, 2, 0, 0);
-        Borda(59, 20, 10, 2, 0, 0);
+        Borda(51, 23, 10, 2, 0, 0);
+        Borda(65, 23, 10, 2, 0, 0);
         escolha = Menu(opcoes, x, y, escolha, 4);
         if(escolha == 0){
             TelaViagens();

@@ -155,7 +155,7 @@ void AtivarClientes(){
             P = PesquisarClientes();
             if(strlen(P.CPF) > 0)
             {
-                ImprimirClientes(C);
+                //ImprimirClientes(C);
             }
             else {
                 Borda(27, 18, 26, 2, 0, 0);
