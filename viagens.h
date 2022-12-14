@@ -17,6 +17,10 @@ struct viagens {
 typedef struct viagens Viagens;
 
 void TelaViagens();
+Viagens DigitarViagens();
 void AtivarViagens();
+void AbrirArquivoViagens();
+void SalvarNovaViagem(Viagens V);
+void FecharArquivoViagens();
 
 #endif //SOFTBUS_VIAGENS_H
