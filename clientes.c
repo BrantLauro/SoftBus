@@ -1,38 +1,13 @@
-//
-// Created by brant on 12/12/2022.
-//
 #include <stdio.h>
-#include <stdlib.h>
 #include "clientes.h"
 #include "interface.h"
 
 FILE *fpClientes;
 
-Clientes DigitarClientes(){
-    Clientes C;
-
-    GotoXY(34,6);
-    scanf(" %[^\n]", C.Nome);
-
-    GotoXY(34, 9);
-    scanf(" %[^\n]", C.CPF);
-
-    GotoXY(34, 12);
-    scanf(" %[^\n]", C.Telefone);
-
-    GotoXY(34, 15);
-    scanf(" %[^\n]", C.Endereco);
-
-    GotoXY(34, 18);
-    scanf("%d", C.Preferencial);
-
-    return C;
-}
-
 void TelaClientes(){
     Borda(3, 1, 111, 26, 1, 0);
     GotoXY(17, 6); printf("        Nome: ");
-    GotoXY(17, 9); printf("         Cpf: ");
+    GotoXY(17, 9); printf("         CPF: ");
     GotoXY(17, 12); printf("    Telefone: ");
     GotoXY(17, 15); printf("    Endereco: ");
     GotoXY(17, 18); printf("Preferencial: ");
@@ -69,28 +44,32 @@ void TelaClientes(){
     printf("%s\n", C.Endereco);
 }*/
 
-/*void AbrirArquivoClientes(){
-    fpClientes = fopen("Clientes.txt", "rb+");
+void AbrirArquivoClientes(){
+    fpClientes = fopen("C:\\Users\\brant\\OneDrive\\Documentos\\projetos\\SoftBus\\arquivos\\clientes.txt",
+                       "rb+");
 
     if(fpClientes == NULL){
-        fpClientes = fopen("Clientes.txt", "wb+");
+        fpClientes = fopen("C:\\Users\\brant\\OneDrive\\Documentos\\projetos\\SoftBus\\arquivos\\clientes.txt",
+                           "wb+");
         if(fpClientes == NULL){
-            printf("Nao abriu Clientes.txt\n");
+            GotoXY(0, 30);
+            printf("[ERROR] O programa nao conseguiu abrir o arquivo.");
             exit(1);
         }
     }
+}
+
+void SalvarNovoCliente(Clientes C){
+    fseek(fpClientes, 0, SEEK_END);//Posiciona no fim do arquivo
+    fwrite(&C, sizeof(Clientes), 1, fpClientes);//Grava
+    fflush(fpClientes);
 }
 
 void FecharArquivoClientes(){
     fclose(fpClientes);
 }
 
-void SalvarNovoClientes(Clientes C){
-    fseek(fpClientes, 0, SEEK_END);//Posiciona no fim do arquivo
-    fwrite(&C, sizeof(Clientes), 1, fpClientes);//Grava
-    fflush(fpClientes);
-}
-
+/*
 Clientes PesquisarClientes(){
     char CPF[51]; Clientes C;
     GotoXY(27,6);
@@ -118,8 +97,30 @@ int CarregarPaciente(char Dados[][51]){
     return n;
 }*/
 
+Clientes DigitarClientes(){
+    Clientes C;
+
+    GotoXY(34,6);
+    scanf(" %[^\n]", C.Nome);
+
+    GotoXY(34, 9);
+    scanf(" %[^\n]", C.CPF);
+
+    GotoXY(34, 12);
+    scanf(" %[^\n]", C.Telefone);
+
+    GotoXY(34, 15);
+    scanf(" %[^\n]", C.Endereco);
+
+    GotoXY(34, 18);
+    scanf("%d", C.Preferencial);
+
+    return C;
+}
+
+
 void AtivarClientes(){
-    Clientes P;
+    Clientes C;
     int Escolha = 0;
     char opcoes[][51] = {"Novo","Sair"};
     int x[] = {49, 69};
@@ -129,7 +130,7 @@ void AtivarClientes(){
     int x1[] = {47, 67};
     int y1[] = {23, 23};
 
-    //AbrirArquivoClientes();
+    AbrirArquivoClientes();
     do{
         TelaClientes();
         Borda(45, 22, 10, 2, 0, 0);
@@ -138,14 +139,13 @@ void AtivarClientes(){
         if(Escolha == 0)
         {
             TelaClientes();
-            P = DigitarClientes();
+            C = DigitarClientes();
             Borda(45, 22, 10, 2, 0, 0);
             Borda(65, 22, 10, 2, 0, 0);
             Escolha = Menu(opcoesConfirma, x1, y1, Escolha, 2);
-            if(Escolha == 0)
-            {
-                //SalvarNovoClientes(P);
-            }else
+            if(Escolha == 0) {
+                SalvarNovoCliente(C);
+            } else
                 Escolha = 0;
         }
         /*if(Escolha == 1)
@@ -165,5 +165,5 @@ void AtivarClientes(){
             system("Pause");
         }*/
     }while(Escolha != 1);
-    //FecharArquivoClientes();
+    FecharArquivoClientes();
 }

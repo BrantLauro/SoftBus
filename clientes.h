@@ -15,6 +15,10 @@ struct clientes {
 typedef struct clientes Clientes;
 
 void TelaClientes();
+Clientes DigitarClientes();
 void AtivarClientes();
+void AbrirArquivoClientes();
+void SalvarNovoCliente(Clientes C);
+void FecharArquivoClientes();
 
 #endif //SOFTBUS_CLIENTES_H
