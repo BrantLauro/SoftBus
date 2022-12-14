@@ -10,4 +10,7 @@ struct clientes {
 };
 typedef struct clientes Clientes;
 
+void TelaClientes();
+void AtivarClientes();
+
 #endif //SOFTBUS_CLIENTES_H
