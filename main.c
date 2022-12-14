@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "interface.h"
 #include "viagens.h"
-//#include "clientes.h"
+#include "clientes.h"
 #include "configuracoes.h"
 #include "vendas.h"
 
@@ -39,6 +39,7 @@ int main() {
         if(escolha == 2) {
         }
         if(escolha == 3) {
+            AtivarClientes();
         }
         if(escolha == 4) {
         }
