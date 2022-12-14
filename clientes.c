@@ -8,29 +8,29 @@
 
 FILE *fpClientes;
 
-/*Clientes DigitarClientes(){
+Clientes DigitarClientes(){
     Clientes C;
 
-    GotoXY(27,6);
+    GotoXY(34,6);
     scanf(" %[^\n]", C.Nome);
 
-    GotoXY(27, 9);
+    GotoXY(34, 9);
     scanf(" %[^\n]", C.CPF);
 
-    GotoXY(27, 12);
+    GotoXY(34, 12);
     scanf(" %[^\n]", C.Telefone);
 
-    GotoXY(27, 15);
+    GotoXY(34, 15);
     scanf(" %[^\n]", C.Endereco);
 
-    GotoXY(27, 18);
+    GotoXY(34, 18);
     scanf("%d", C.Preferencial);
 
     return C;
-}*/
+}
 
 void TelaClientes(){
-    Borda(4, 1, 111, 26, 1, 0);
+    Borda(3, 1, 111, 26, 1, 0);
     GotoXY(17, 6); printf("        Nome: ");
     GotoXY(17, 9); printf("         Cpf: ");
     GotoXY(17, 12); printf("    Telefone: ");
@@ -138,7 +138,7 @@ void AtivarClientes(){
         if(Escolha == 0)
         {
             TelaClientes();
-            //P = DigitarClientes();
+            P = DigitarClientes();
             Borda(45, 22, 10, 2, 0, 0);
             Borda(65, 22, 10, 2, 0, 0);
             Escolha = Menu(opcoesConfirma, x1, y1, Escolha, 2);
