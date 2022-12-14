@@ -45,12 +45,10 @@ void TelaClientes(){
 }*/
 
 void AbrirArquivoClientes(){
-    fpClientes = fopen("C:\\Users\\brant\\OneDrive\\Documentos\\projetos\\SoftBus\\arquivos\\clientes.txt",
-                       "rb+");
+    fpClientes = fopen("clientes.txt","rb+");
 
     if(fpClientes == NULL){
-        fpClientes = fopen("C:\\Users\\brant\\OneDrive\\Documentos\\projetos\\SoftBus\\arquivos\\clientes.txt",
-                           "wb+");
+        fpClientes = fopen("clientes.txt","wb+");
         if(fpClientes == NULL){
             GotoXY(0, 30);
             printf("[ERROR] O programa nao conseguiu abrir o arquivo.");
@@ -113,7 +111,7 @@ Clientes DigitarClientes(){
     scanf(" %[^\n]", C.Endereco);
 
     GotoXY(34, 18);
-    scanf("%d", C.Preferencial);
+    scanf("%d", &C.Preferencial);
 
     return C;
 }

@@ -4,11 +4,9 @@
 FILE *fpViagens;
 
 void AbrirArquivoViagens() {
-    fpViagens = fopen("C:\\Users\\brant\\OneDrive\\Documentos\\projetos\\SoftBus\\arquivos\\viagens.txt",
-                      "rb+");
+    fpViagens = fopen("viagens.txt","rb+");
     if(fpViagens == NULL) {
-        fpViagens = fopen("C:\\Users\\brant\\OneDrive\\Documentos\\projetos\\SoftBus\\arquivos\\viagens.txt",
-                          "wb+");
+        fpViagens = fopen("viagens.txt","wb+");
         if(fpViagens == NULL) {
             GotoXY(0, 30);
             printf("[ERROR] O programa nao conseguiu abrir o arquivo.");
