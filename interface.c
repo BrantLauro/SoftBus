@@ -20,7 +20,7 @@ int GetTecla(){
     return ch;
 }
 
-void TextColor (int iColor){
+/*void TextColor (int iColor){
     HANDLE hl = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
     bufferInfo.wAttributes &= 0x00F0;
@@ -59,16 +59,16 @@ void Borda(int x, int y, int largura, int altura, int tipo, int sombra){
 
 int Menu(char opcoes[][51], int x[], int y[], int opcao, int n){
     int i; int tecla;
-    TextColor(WHITE); TextBackground(BLACK);
+    TextColoreback(BROWN, BLACK);
     for(i = 0; i < n; i++) {
         GotoXY(x[i], y[i]); printf("%s", opcoes[i]);
     }
     do {
-        TextColor(DARK_GRAY); TextBackground(BLACK);
+        TextColoreback(YELLOW, BLACK);
         GotoXY(x[opcao], y[opcao]);
         printf("%s", opcoes[opcao]);
         tecla = GetTecla();
-        TextColor(WHITE); TextBackground(BLACK);
+        TextColoreback(BROWN, BLACK);
         if(tecla == 13) return opcao;
         GotoXY(x[opcao], y[opcao]);
         printf("%s", opcoes[opcao]);

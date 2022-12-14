@@ -33,8 +33,7 @@ enum DOS_COLORS {
 
 int GetTecla();
 void GotoXY(int x, int y);
-void TextColor (int iColor);
-void TextBackground (int iColor);
+void TextColoreback(int letras, int fundo);
 void Borda(int x, int y, int largura, int altura, int tipo, int sombra);
 int Menu(char opcoes[][51], int x[], int y[], int opcao, int n);
 

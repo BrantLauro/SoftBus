@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "interface.h"
 #include "viagens.h"
-#include "clientes.h"
+//#include "clientes.h"
 #include "configuracoes.h"
 #include "vendas.h"
 
@@ -11,8 +11,7 @@ int x[] = {21, 51, 82, 20, 52, 83};
 int y[] = {13, 13, 13, 18, 18, 18};
 
 void TelaPrincipal () {
-    TextBackground(BLACK);
-    TextColor(WHITE);
+    TextColoreback(BROWN, BLACK);
     Borda(0, 0, 118, 28, 1, 0);
     GotoXY(34, 1); printf("________       _____________ ________  ");
     GotoXY(34, 2); printf("__  ___/______ ___  __/__  /____  __ )____  __________");
@@ -32,10 +31,8 @@ int main() {
     do {
         TelaPrincipal();
         escolha = Menu(opcoes, x, y, escolha, 6);
-        Borda(150, 12, 20, 2, 0,0);
-        Borda(150, 15, 20, 2, 0,0);
-        GotoXY(3, 10);
-        if(escolha == 0){;
+        if(escolha == 0){
+            AtivarViagens();
         }
         if(escolha == 1) {
         }
