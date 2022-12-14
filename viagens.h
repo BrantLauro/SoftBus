@@ -10,4 +10,7 @@ struct viagens {
 };
 typedef struct viagens Viagens;
 
+void TelaViagens();
+void AtivarViagens();
+
 #endif //SOFTBUS_VIAGENS_H
