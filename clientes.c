@@ -28,29 +28,26 @@ void FecharArquivoClientes() {
 
 void TelaClientes() {
     Borda(3, 1, 111, 26, 1, 0);
-    GotoXY(17, 6); printf("        Nome: ");
-    GotoXY(17, 9); printf("         CPF: ");
-    GotoXY(17, 12); printf("    Telefone: ");
-    GotoXY(17, 15); printf("    Endereco: ");
-    GotoXY(17, 18); printf("Preferencial: ");
-    Borda(32, 5, 60, 2, 0, 0);
-    Borda(32, 8, 60, 2, 0, 0);
-    Borda(32, 11, 60, 2, 0, 0);
-    Borda(32, 14, 60, 2, 0, 0);
-    Borda(32, 17, 60, 2, 0, 0);
+    GotoXY(17, 7); printf("        Nome: ");
+    GotoXY(17, 10); printf("         CPF: ");
+    GotoXY(17, 13); printf("    Telefone: ");
+    GotoXY(17, 16); printf("    Endereco: ");
+    Borda(32, 6, 60, 2, 0, 0);
+    Borda(32, 9, 60, 2, 0, 0);
+    Borda(32, 12, 60, 2, 0, 0);
+    Borda(32, 15, 60, 2, 0, 0);
 }
 
 void ImprimirCliente(Clientes C) {
-    GotoXY(34, 6); printf("%s\n", C.Nome);
-    GotoXY(34, 9); printf("%s\n", C.CPF);
-    GotoXY(34, 12); printf("%s\n", C.Telefone);
-    GotoXY(34, 15); printf("%s\n", C.Endereco);
-    GotoXY(34, 18); printf("%d\n", C.Preferencial);
+    GotoXY(34, 7); printf("%s\n", C.Nome);
+    GotoXY(34, 10); printf("%s\n", C.CPF);
+    GotoXY(34, 13); printf("%s\n", C.Telefone);
+    GotoXY(34, 16); printf("%s\n", C.Endereco);
 }
 
 Clientes PesquisarClientes() {
     char Nome[51]; Clientes C;
-    GotoXY(34,6);
+    GotoXY(34,7);
     scanf(" %[^\n]", Nome);
     fseek(fpClientes, 0, SEEK_SET);
     while(fread(&C, sizeof(Clientes), 1, fpClientes)) {
@@ -76,11 +73,10 @@ int CarregarPaciente(char Dados[][51]) {
 
 Clientes DigitarClientes() {
     Clientes C;
-    GotoXY(34,6); scanf(" %[^\n]", C.Nome);
-    GotoXY(34, 9); scanf(" %[^\n]", C.CPF);
-    GotoXY(34, 12); scanf(" %[^\n]", C.Telefone);
-    GotoXY(34, 15); scanf(" %[^\n]", C.Endereco);
-    GotoXY(34, 18); scanf("%d", &C.Preferencial);
+    GotoXY(34,7); scanf(" %[^\n]", C.Nome);
+    GotoXY(34, 10); scanf(" %[^\n]", C.CPF);
+    GotoXY(34, 13); scanf(" %[^\n]", C.Telefone);
+    GotoXY(34, 16); scanf(" %[^\n]", C.Endereco);
     return C;
 }
 
