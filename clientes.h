@@ -12,6 +12,8 @@ typedef struct clientes Clientes;
 
 void TelaClientes();
 Clientes DigitarClientes();
+void ImprimirCliente(Clientes C);
+Clientes PesquisarClientes();
 void AtivarClientes();
 void AbrirArquivoClientes();
 void SalvarNovoCliente(Clientes C);

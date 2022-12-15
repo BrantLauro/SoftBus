@@ -4,7 +4,29 @@
 
 FILE *fpClientes;
 
-void TelaClientes(){
+void AbrirArquivoClientes() {
+    fpClientes = fopen("clientes.txt","rb+");
+    if(fpClientes == NULL){
+        fpClientes = fopen("clientes.txt","wb+");
+        if(fpClientes == NULL){
+            GotoXY(0, 30);
+            printf("[ERROR] O programa nao conseguiu abrir o arquivo.");
+            exit(1);
+        }
+    }
+}
+
+void SalvarNovoCliente(Clientes C) {
+    fseek(fpClientes, 0, SEEK_END);//Posiciona no fim do arquivo
+    fwrite(&C, sizeof(Clientes), 1, fpClientes);//Grava
+    fflush(fpClientes);
+}
+
+void FecharArquivoClientes() {
+    fclose(fpClientes);
+}
+
+void TelaClientes() {
     Borda(3, 1, 111, 26, 1, 0);
     GotoXY(17, 6); printf("        Nome: ");
     GotoXY(17, 9); printf("         CPF: ");
@@ -18,71 +40,28 @@ void TelaClientes(){
     Borda(32, 17, 60, 2, 0, 0);
 }
 
-/*void ImprimirClientes(Clientes C){
-    Borda(14, 3, 52, 18, 1, 1);
-    Borda(26, 5, 30, 2, 0, 0);
-    Borda(26, 8, 30, 2, 0, 0);
-    Borda(26, 11, 30, 2, 0, 0);
-    Borda(26, 14, 30, 2, 0, 0);
-    gotoxy(17, 6);
-    printf("     Nome:");
-    gotoxy(27, 6);
-    printf("%s\n", C.Nome);
-    gotoxy(17, 9);
-    printf("    Cpf:");
-    gotoxy(27, 9);
-    printf("%s\n", C.CPF);
-    gotoxy(17, 12);
-    printf("Telefone:");
-    gotoxy(27, 12);
-    printf("%s\n", C.Telefone);
-    gotoxy(17, 15);
-    printf("Endereco:");
-    gotoxy(27, 15);
-    printf("%s\n", C.Endereco);
-    gotoxy(27, 15);
-    printf("%s\n", C.Endereco);
-}*/
-
-void AbrirArquivoClientes(){
-    fpClientes = fopen("clientes.txt","rb+");
-
-    if(fpClientes == NULL){
-        fpClientes = fopen("clientes.txt","wb+");
-        if(fpClientes == NULL){
-            GotoXY(0, 30);
-            printf("[ERROR] O programa nao conseguiu abrir o arquivo.");
-            exit(1);
-        }
-    }
+void ImprimirCliente(Clientes C) {
+    GotoXY(34, 6); printf("%s\n", C.Nome);
+    GotoXY(34, 9); printf("%s\n", C.CPF);
+    GotoXY(34, 12); printf("%s\n", C.Telefone);
+    GotoXY(34, 15); printf("%s\n", C.Endereco);
+    GotoXY(34, 18); printf("%d\n", C.Preferencial);
 }
 
-void SalvarNovoCliente(Clientes C){
-    fseek(fpClientes, 0, SEEK_END);//Posiciona no fim do arquivo
-    fwrite(&C, sizeof(Clientes), 1, fpClientes);//Grava
-    fflush(fpClientes);
-}
-
-void FecharArquivoClientes(){
-    fclose(fpClientes);
-}
-
-/*
-Clientes PesquisarClientes(){
-    char CPF[51]; Clientes C;
-    GotoXY(27,6);
-    scanf(" %[^\n]", CPF);
+Clientes PesquisarClientes() {
+    char Nome[51]; Clientes C;
+    GotoXY(34,6);
+    scanf(" %[^\n]", Nome);
     fseek(fpClientes, 0, SEEK_SET);
-    while(fread(&C, sizeof(Clientes), 1, fpClientes)){
-        if(strcmp(C.CPF, CPF) == 0){
+    while(fread(&C, sizeof(Clientes), 1, fpClientes)) {
+        if(strcmp(C.Nome, Nome) == 0)
             return C;
-        }
     }
-    strcpy(C.CPF, "");
+    strcpy(C.Nome, "");
     return C;
 }
 
-int CarregarPaciente(char Dados[][51]){
+int CarregarPaciente(char Dados[][51]) {
     int n = 0;
     Clientes C;
 
@@ -93,74 +72,59 @@ int CarregarPaciente(char Dados[][51]){
         n++;
     }
     return n;
-}*/
+}
 
-Clientes DigitarClientes(){
+Clientes DigitarClientes() {
     Clientes C;
-
-    GotoXY(34,6);
-    scanf(" %[^\n]", C.Nome);
-
-    GotoXY(34, 9);
-    scanf(" %[^\n]", C.CPF);
-
-    GotoXY(34, 12);
-    scanf(" %[^\n]", C.Telefone);
-
-    GotoXY(34, 15);
-    scanf(" %[^\n]", C.Endereco);
-
-    GotoXY(34, 18);
-    scanf("%d", &C.Preferencial);
-
+    GotoXY(34,6); scanf(" %[^\n]", C.Nome);
+    GotoXY(34, 9); scanf(" %[^\n]", C.CPF);
+    GotoXY(34, 12); scanf(" %[^\n]", C.Telefone);
+    GotoXY(34, 15); scanf(" %[^\n]", C.Endereco);
+    GotoXY(34, 18); scanf("%d", &C.Preferencial);
     return C;
 }
 
-void AtivarClientes(){
+void AtivarClientes() {
     Clientes C;
     int Escolha = 0;
-    char opcoes[][51] = {"Novo","Sair"};
-    int x[] = {49, 69};
-    int y[] = {23, 23};
-
-    char opcoesConfirma[][51] = {"Confirma", "Cancela"};
-    int x1[] = {47, 67};
-    int y1[] = {23, 23};
-
+    char Opcoes[][51] = {"Novo", "Pesquisar", "Alterar", "Sair"};
+    char OpcoesConfirma[][51] = {"Confirma", "Cancelar"};
     AbrirArquivoClientes();
-    do{
+    int x[] = {29, 46,68, 89};
+    int y[] = {24, 24, 24, 24};
+    int xConfirma[] = {47, 67};
+    do {
         TelaClientes();
-        Borda(45, 22, 10, 2, 0, 0);
-        Borda(65, 22, 10, 2, 0, 0);
-        Escolha = Menu(opcoes, x, y, Escolha, 2);
-        if(Escolha == 0)
-        {
+        Borda(25, 23, 10, 2, 0, 0);
+        Borda(45, 23, 10, 2, 0, 0);
+        Borda(65, 23, 10, 2, 0, 0);
+        Borda(85, 23, 10, 2, 0, 0);
+        Escolha = Menu(Opcoes, x, y, Escolha, 4);
+        if(Escolha == 0) {
             TelaClientes();
             C = DigitarClientes();
-            Borda(45, 22, 10, 2, 0, 0);
-            Borda(65, 22, 10, 2, 0, 0);
-            Escolha = Menu(opcoesConfirma, x1, y1, Escolha, 2);
-            if(Escolha == 0) {
+            Borda(45, 23, 10, 2, 0, 0);
+            Borda(65, 23, 10, 2, 0, 0);
+            Escolha = Menu(OpcoesConfirma, xConfirma, y, Escolha, 2);
+            if(Escolha == 0)
                 SalvarNovoCliente(C);
-            } else
+            else
                 Escolha = 0;
         }
-        /*if(Escolha == 1)
-        {
+        if(Escolha == 1) {
             TelaClientes();
-            P = PesquisarClientes();
-            if(strlen(P.CPF) > 0)
-            {
-                //ImprimirClientes(C);
-            }
+            C = PesquisarClientes();
+            if(strlen(C.Nome) > 0)
+                ImprimirCliente(C);
             else {
-                Borda(27, 18, 26, 2, 0, 0);
-                GotoXY(30, 19);
-                printf("PACIENTE NAO CADASTRO");
+                Borda(49, 10, 25, 4, 1, 0);
+                GotoXY(52, 12);
+                printf("CLIENTE NAO CADASTRADO");
             }
-            GotoXY(0, 25);
-            system("Pause");
-        }*/
-    }while(Escolha != 1);
+            Borda(35, 23, 46, 2, 0, 0);
+            GotoXY(36, 24);
+            system("PAUSE");
+        }
+    } while(Escolha != 3);
     FecharArquivoClientes();
 }
