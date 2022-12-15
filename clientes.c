@@ -73,10 +73,10 @@ int CarregarPaciente(char Dados[][51]) {
 
 Clientes DigitarClientes() {
     Clientes C;
-    GotoXY(34,7); scanf(" %[^\n]", C.Nome);
-    GotoXY(34, 10); scanf(" %[^\n]", C.CPF);
-    GotoXY(34, 13); scanf(" %[^\n]", C.Telefone);
-    GotoXY(34, 16); scanf(" %[^\n]", C.Endereco);
+    GotoXY(34,8); scanf(" %[^\n]", C.Nome);
+    GotoXY(34, 11); scanf(" %[^\n]", C.CPF);
+    GotoXY(34, 14); scanf(" %[^\n]", C.Telefone);
+    GotoXY(34, 17); scanf(" %[^\n]", C.Endereco);
     return C;
 }
 
