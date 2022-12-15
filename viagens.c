@@ -1,5 +1,6 @@
 #include "viagens.h"
 #include "interface.h"
+#include "configuracoes.h"
 
 FILE *fpViagens;
 
@@ -84,19 +85,20 @@ Viagens DigitarViagens() {
 
 void AtivarViagens() {
     int Escolha = 0; Viagens V;
-    char Opcoes[][51] = {"Novo", "Pesquisar", "Alterar", "Sair"};
+    char Opcoes[][51] = {"Novo", "Configuracoes", "Pesquisar", "Alterar", "Sair"};
     char OpcoesConfirma[][51] = {"Confirma", "Cancelar"};
     AbrirArquivoViagens();
-    int x[] = {29, 46,68, 89};
-    int y[] = {24, 24, 24, 24};
+    int x[] = {19, 34,56, 77, 98};
+    int y[] = {24, 24, 24, 24, 24};
     int xConfirma[] = {47, 67};
     do {
         TelaViagens();
-        Borda(25, 23, 10, 2, 0, 0);
-        Borda(45, 23, 10, 2, 0, 0);
-        Borda(65, 23, 10, 2, 0, 0);
-        Borda(85, 23, 10, 2, 0, 0);
-        Escolha = Menu(Opcoes, x, y, Escolha, 4);
+        Borda(12, 23, 15, 2, 0, 0);
+        Borda(32, 23, 15, 2, 0, 0);
+        Borda(52, 23, 15, 2, 0, 0);
+        Borda(72, 23, 15, 2, 0, 0);
+        Borda(92, 23, 15, 2, 0, 0);
+        Escolha = Menu(Opcoes, x, y, Escolha, 5);
         if(Escolha == 0){
             TelaViagens();
             V = DigitarViagens();
@@ -110,6 +112,9 @@ void AtivarViagens() {
                 Escolha = 0;
         }
         if(Escolha == 1) {
+            AtivarConfiguracoes();
+        }
+        if(Escolha == 2) {
             TelaViagens();
             V = PesquisarViagens();
             if(V.NumeroViagem != 0)
@@ -123,10 +128,10 @@ void AtivarViagens() {
             GotoXY(36, 24);
             system("PAUSE");
         }
-        if(Escolha == 2) {
+        if(Escolha == 3) {
             //V = PesquisarViagens();
             //AlterarViagem(V);
         }
-    } while(Escolha != 3);
+    } while(Escolha != 4);
     FecharArquivoViagens();
 }
