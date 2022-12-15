@@ -47,6 +47,29 @@ void TelaViagens() {
     Borda(32, 18, 60, 2, 0, 0);
 }
 
+void ImprimirViagem(Viagens V) {
+    GotoXY(34, 4); printf("%d\n", V.NumeroViagem);
+    GotoXY(34, 7); printf("%s\n", V.LocalSaida);
+    GotoXY(34, 10); printf("%s\n", V.LocalDestino);
+    GotoXY(34, 13); printf("%s\n", V.DiaSaida);
+    GotoXY(34, 16); printf("%s\n", V.HoraSaida);
+    GotoXY(34, 19); printf("%.2lf\n", V.Quilometragem);
+    GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
+}
+
+Viagens PesquisarViagens() {
+    int NumeroViagem; Viagens V;
+    GotoXY(34,4);
+    scanf("%d", &NumeroViagem);
+    fseek(fpViagens, 0, SEEK_SET);
+    while(fread(&V, sizeof(Viagens), 1, fpViagens)) {
+        if(V.NumeroViagem == NumeroViagem)
+            return V;
+    }
+    V.NumeroViagem = 0;
+    return V;
+}
+
 Viagens DigitarViagens() {
     Viagens V;
     GotoXY(34, 4); scanf("%d", &V.NumeroViagem);
@@ -60,30 +83,50 @@ Viagens DigitarViagens() {
 }
 
 void AtivarViagens() {
-    int escolha = 0; Viagens V;
-    char opcoes[][51] = {"Novo","Sair"};
-    char opcoesConfirma[][51] = {"Confirma", "Cancela"};
+    int Escolha = 0; Viagens V;
+    char Opcoes[][51] = {"Novo", "Pesquisar", "Alterar", "Sair"};
+    char OpcoesConfirma[][51] = {"Confirma", "Cancelar"};
     AbrirArquivoViagens();
-    int x[] = {49, 69};
-    int y[] = {24, 24};
+    int x[] = {29, 46,68, 89};
+    int y[] = {24, 24, 24, 24};
     int xConfirma[] = {47, 67};
     do {
         TelaViagens();
+        Borda(25, 23, 10, 2, 0, 0);
         Borda(45, 23, 10, 2, 0, 0);
         Borda(65, 23, 10, 2, 0, 0);
-        escolha = Menu(opcoes, x, y, escolha, 2);
-        if(escolha == 0){
+        Borda(85, 23, 10, 2, 0, 0);
+        Escolha = Menu(Opcoes, x, y, Escolha, 4);
+        if(Escolha == 0){
             TelaViagens();
             V = DigitarViagens();
-            GotoXY(53, 21); printf("Preco = R$%.2lf", V.Preco);
+            GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
             Borda(45, 23, 10, 2, 0, 0);
             Borda(65, 23, 10, 2, 0, 0);
-            escolha = Menu(opcoesConfirma, xConfirma, y, escolha, 2);
-            if(escolha == 0){
+            Escolha = Menu(OpcoesConfirma, xConfirma, y, Escolha, 2);
+            if(Escolha == 0){
                 SalvarNovaViagem(V);
             } else
-                escolha = 0;
+                Escolha = 0;
         }
-    } while(escolha != 1);
+        if(Escolha == 1) {
+            TelaViagens();
+            V = PesquisarViagens();
+            if(V.NumeroViagem != 0)
+                ImprimirViagem(V);
+            else {
+                Borda(49, 10, 25, 4, 1, 0);
+                GotoXY(52, 12);
+                printf("VIAGEM NAO CADASTRADA");
+            }
+            Borda(35, 23, 46, 2, 0, 0);
+            GotoXY(36, 24);
+            system("PAUSE");
+        }
+        if(Escolha == 2) {
+            //V = PesquisarViagens();
+            //AlterarViagem(V);
+        }
+    } while(Escolha != 3);
     FecharArquivoViagens();
 }

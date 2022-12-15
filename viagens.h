@@ -14,6 +14,8 @@ typedef struct viagens Viagens;
 
 void TelaViagens();
 Viagens DigitarViagens();
+void ImprimirViagem(Viagens V);
+Viagens PesquisarViagens();
 void AtivarViagens();
 void AbrirArquivoViagens();
 void SalvarNovaViagem(Viagens V);
