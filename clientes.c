@@ -28,14 +28,14 @@ void FecharArquivoClientes() {
 
 void TelaClientes() {
     Borda(3, 1, 111, 26, 1, 0);
-    GotoXY(17, 7); printf("        Nome: ");
-    GotoXY(17, 10); printf("         CPF: ");
-    GotoXY(17, 13); printf("    Telefone: ");
-    GotoXY(17, 16); printf("    Endereco: ");
-    Borda(32, 6, 60, 2, 0, 0);
-    Borda(32, 9, 60, 2, 0, 0);
-    Borda(32, 12, 60, 2, 0, 0);
-    Borda(32, 15, 60, 2, 0, 0);
+    GotoXY(17, 8); printf("        Nome: ");
+    GotoXY(17, 11); printf("         CPF: ");
+    GotoXY(17, 14); printf("    Telefone: ");
+    GotoXY(17, 17); printf("    Endereco: ");
+    Borda(32, 7, 60, 2, 0, 0);
+    Borda(32, 10, 60, 2, 0, 0);
+    Borda(32, 13, 60, 2, 0, 0);
+    Borda(32, 16, 60, 2, 0, 0);
 }
 
 void ImprimirCliente(Clientes C) {
@@ -86,7 +86,7 @@ void AtivarClientes() {
     char Opcoes[][51] = {"Novo", "Pesquisar", "Alterar", "Sair"};
     char OpcoesConfirma[][51] = {"Confirma", "Cancelar"};
     AbrirArquivoClientes();
-    int x[] = {29, 46,68, 89};
+    int x[] = {29, 46,67, 89};
     int y[] = {24, 24, 24, 24};
     int xConfirma[] = {47, 67};
     do {
