@@ -129,8 +129,11 @@ void AtivarViagens() {
             system("PAUSE");
         }
         if(Escolha == 3) {
-            //V = PesquisarViagens();
-            //AlterarViagem(V);
+            PesquisarViagens();
+            V = DigitarViagens();
+            AbrirArquivoViagens(V);
+            fseek(fpViagens, -sizeof(Viagens), SEEK_CUR);
+            fwrite(&V, sizeof(Viagens), 1, fpViagens);
         }
     } while(Escolha != 4);
     FecharArquivoViagens();

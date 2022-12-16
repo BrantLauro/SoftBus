@@ -20,6 +20,7 @@ void SalvarNovoCliente(Clientes C) {
     fseek(fpClientes, 0, SEEK_END);//Posiciona no fim do arquivo
     fwrite(&C, sizeof(Clientes), 1, fpClientes);//Grava
     fflush(fpClientes);
+    FecharArquivoClientes();
 }
 
 void FecharArquivoClientes() {
@@ -58,7 +59,7 @@ Clientes PesquisarClientes() {
     return C;
 }
 
-int CarregarPaciente(char Dados[][51]) {
+int CarregarClientes(char Dados[][51]) {
     int n = 0;
     Clientes C;
 
@@ -120,6 +121,13 @@ void AtivarClientes() {
             Borda(35, 23, 46, 2, 0, 0);
             GotoXY(36, 24);
             system("PAUSE");
+        }
+        if(Escolha == 2){
+            PesquisarClientes();
+            C = DigitarClientes();
+            AbrirArquivoClientes();
+            fseek(fpClientes, -sizeof(Clientes), SEEK_CUR);
+            fwrite(&C, sizeof(Clientes), 1, fpClientes);
         }
     } while(Escolha != 3);
     FecharArquivoClientes();
