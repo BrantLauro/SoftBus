@@ -2,8 +2,8 @@
 #include "interface.h"
 #include "viagens.h"
 #include "clientes.h"
+#include "vendas.h"
 //#include "configuracoes.h"
-//#include "vendas.h"
 
 char opcoes[][51] = {"Viagens",  "Clientes", "Vendas", "Fechar" };
 int x[] = {18, 43, 68, 93};
@@ -47,7 +47,7 @@ int main() {
             AtivarClientes();
         }
         if(escolha == 2) {
-            //AtivarVendas();
+            AtivarVendas();
         }
         if(escolha == 3) {
             break;
