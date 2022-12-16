@@ -39,15 +39,15 @@ void TelaClientes() {
 }
 
 void ImprimirCliente(Clientes C) {
-    GotoXY(34, 7); printf("%s\n", C.Nome);
-    GotoXY(34, 10); printf("%s\n", C.CPF);
-    GotoXY(34, 13); printf("%s\n", C.Telefone);
-    GotoXY(34, 16); printf("%s\n", C.Endereco);
+    GotoXY(34, 8); printf("%s\n", C.Nome);
+    GotoXY(34, 11); printf("%s\n", C.CPF);
+    GotoXY(34, 14); printf("%s\n", C.Telefone);
+    GotoXY(34, 17); printf("%s\n", C.Endereco);
 }
 
 Clientes PesquisarClientes() {
     char Nome[51]; Clientes C;
-    GotoXY(34,7);
+    GotoXY(34,8);
     scanf(" %[^\n]", Nome);
     fseek(fpClientes, 0, SEEK_SET);
     while(fread(&C, sizeof(Clientes), 1, fpClientes)) {
