@@ -6,7 +6,6 @@ struct vendas {
     char CPF[15];
     char Telefone[21];
     char Endereco[51];
-    int Preferencial;
 };
 typedef struct vendas Vendas;
 
