@@ -3,7 +3,6 @@
 #include "viagens.h"
 #include "clientes.h"
 #include "vendas.h"
-//#include "configuracoes.h"
 
 char opcoes[][51] = {"Viagens",  "Clientes", "Vendas", "Fechar" };
 int x[] = {18, 43, 68, 93};
