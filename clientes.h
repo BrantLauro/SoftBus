@@ -12,7 +12,7 @@ typedef struct clientes Clientes;
 void TelaClientes();
 Clientes DigitarClientes();
 void ImprimirCliente(Clientes C);
-Clientes PesquisarClientes();
+Clientes PesquisarClientes(int Alterar);
 void AtivarClientes();
 void AbrirArquivoClientes();
 void SalvarNovoCliente(Clientes C);

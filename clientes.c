@@ -52,14 +52,15 @@ Clientes PesquisarClientes(int Alterar) {
     scanf(" %[^\n]", Nome);
     fseek(fpClientes, 0, SEEK_SET);
     while(fread(&C, sizeof(Clientes), 1, fpClientes)) {
-        if(strcmp(C.Nome, Nome) == 0)
-            if(Alterar == 1)Borda(32, 7, 60, 2, 0, 0);
+        if(strcmp(C.Nome, Nome) == 0) {
+            if (Alterar == 1)Borda(32, 7, 60, 2, 0, 0);
             return C;
+        }
     }
     strcpy(C.Nome, "");
     return C;
 }
-
+/*
 int CarregarClientes(char Dados[][51]) {
     int n = 0;
     Clientes C;
@@ -71,7 +72,7 @@ int CarregarClientes(char Dados[][51]) {
         n++;
     }
     return n;
-}
+} */
 
 Clientes DigitarClientes() {
     Clientes C;
