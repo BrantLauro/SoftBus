@@ -9,4 +9,13 @@ struct vendas {
 };
 typedef struct vendas Vendas;
 
+void AbrirArquivoVendas();
+void SalvarNovoVendas(Vendas C);
+void FecharArquivoVendas();
+void TelaVendas();
+void ImprimirVendas(Vendas V);
+Vendas PesquisarVendas();
+Vendas DigitarVendas();
+void AtivarVendas();
+
 #endif //SOFTBUS_VENDAS_H

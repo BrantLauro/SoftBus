@@ -57,7 +57,7 @@ Vendas PesquisarVendas() {
     strcpy(V.Nome, "");
     return V;
 }
-
+/*
 int CarregarVendas(char Dados[][51]) {
     int n = 0;
     Vendas V;
@@ -69,7 +69,7 @@ int CarregarVendas(char Dados[][51]) {
         n++;
     }
     return n;
-}
+}*/
 
 Vendas DigitarVendas() {
     Vendas V;
