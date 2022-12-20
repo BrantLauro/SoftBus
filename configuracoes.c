@@ -2,11 +2,14 @@
 #include "interface.h"
 
 FILE *fpConfiguracoes;
+int MODO;
 
 void AbrirArquivoConfiguracoes() {
     fpConfiguracoes = fopen("configuracoes.txt","rb+");
+    MODO = 1;
     if(fpConfiguracoes == NULL) {
         fpConfiguracoes = fopen("configuracoes.txt","wb+");
+        MODO = 0;
         if(fpConfiguracoes == NULL) {
             GotoXY(0, 30);
             printf("[ERROR] O programa nao conseguiu abrir o arquivo.");
@@ -41,9 +44,11 @@ void TelaConfiguracoes() {
 }
 
 void ImprimirConfiguracoes(Configuracoes Conf) {
-    GotoXY(60, 8); printf("%.2lf", Conf.TaxaKm);
-    GotoXY(60, 11); printf("%.2lf", Conf.TaxaEmbarque);
-    GotoXY(57, 14); printf("%d", Conf.TamanhoOnibus);
+    if(MODO != 0) {
+        GotoXY(60, 8); printf("%.2lf", Conf.TaxaKm);
+        GotoXY(60, 11); printf("%.2lf", Conf.TaxaEmbarque);
+        GotoXY(57, 14); printf("%d", Conf.TamanhoOnibus);
+    }
 }
 
 Configuracoes DigitarConfiguracoes() {
@@ -78,8 +83,11 @@ void AtivarConfiguracoes() {
             Escolha = Menu(OpcoesConfirma, xConfirma, y, Escolha, 2);
             if(Escolha == 0){
                 SalvarNovaConfiguracao(Conf);
-            } else
+                MODO = 1;
+            } else {
                 Escolha = 0;
+                MODO = 0;
+            }
         }
     } while(Escolha != 1);
     FecharArquivoConfiguracoes();
