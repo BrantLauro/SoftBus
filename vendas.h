@@ -6,6 +6,9 @@ struct vendas {
     char CPF[15];
     char Telefone[21];
     char Endereco[51];
+    int Onibus;
+    int Poltrona;
+    double Valor;
 };
 typedef struct vendas Vendas;
 
@@ -15,7 +18,7 @@ void FecharArquivoVendas();
 void TelaVendas();
 void ImprimirVendas(Vendas V);
 Vendas PesquisarVendas();
-Vendas DigitarVendas();
+Vendas DigitarVenda();
 void AtivarVendas();
 
 #endif //SOFTBUS_VENDAS_H
