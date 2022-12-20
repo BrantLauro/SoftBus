@@ -50,12 +50,12 @@ void TelaViagens() {
 }
 
 void ImprimirViagem(Viagens V) {
-    GotoXY(34, 4); printf("%d\n", V.NumeroViagem);
-    GotoXY(34, 7); printf("%s\n", V.LocalSaida);
-    GotoXY(34, 10); printf("%s\n", V.LocalDestino);
-    GotoXY(34, 13); printf("%s\n", V.DiaSaida);
-    GotoXY(34, 16); printf("%s\n", V.HoraSaida);
-    GotoXY(34, 19); printf("%.2lf\n", V.Quilometragem);
+    GotoXY(34, 4); printf("%d", V.NumeroViagem);
+    GotoXY(34, 7); printf("%s", V.LocalSaida);
+    GotoXY(34, 10); printf("%s", V.LocalDestino);
+    GotoXY(34, 13); printf("%s", V.DiaSaida);
+    GotoXY(34, 16); printf("%s", V.HoraSaida);
+    GotoXY(34, 19); printf("%.2lf", V.Quilometragem);
     GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
 }
 

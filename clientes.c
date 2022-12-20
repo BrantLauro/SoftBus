@@ -39,10 +39,10 @@ void TelaClientes() {
 }
 
 void ImprimirCliente(Clientes C) {
-    GotoXY(34, 8); printf("%s\n", C.Nome);
-    GotoXY(34, 11); printf("%s\n", C.CPF);
-    GotoXY(34, 14); printf("%s\n", C.Telefone);
-    GotoXY(34, 17); printf("%s\n", C.Endereco);
+    GotoXY(34, 8); printf("%s", C.Nome);
+    GotoXY(34, 11); printf("%s", C.CPF);
+    GotoXY(34, 14); printf("%s", C.Telefone);
+    GotoXY(34, 17); printf("%s", C.Endereco);
 }
 
 Clientes PesquisarClientes(int Alterar) {
@@ -105,9 +105,9 @@ void AtivarClientes() {
             Borda(45, 23, 10, 2, 0, 0);
             Borda(65, 23, 10, 2, 0, 0);
             Escolha = Menu(OpcoesConfirma, xConfirma, y, Escolha, 2);
-            if(Escolha == 0)
+            if(Escolha == 0) {
                 SalvarNovoCliente(C);
-            else
+            } else
                 Escolha = 0;
         }
         if(Escolha == 1) {

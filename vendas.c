@@ -90,9 +90,9 @@ Vendas DigitarVenda() {
     }
     fclose(fpClientesV);
     if(Cliente == 1) {
-        GotoXY(34, 7); printf("%s\n", V.CPF);
-        GotoXY(34, 10); printf("%s\n", V.Telefone);
-        GotoXY(34, 13); printf("%s\n", V.Endereco);
+        GotoXY(34, 7); printf("%s", V.CPF);
+        GotoXY(34, 10); printf("%s", V.Telefone);
+        GotoXY(34, 13); printf("%s", V.Endereco);
 
     } else {
         GotoXY(34, 7); scanf(" %[^\n]", V.CPF);
