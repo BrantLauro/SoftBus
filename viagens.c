@@ -58,13 +58,14 @@ void ImprimirViagem(Viagens V) {
     GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
 }
 
-Viagens PesquisarViagens() {
+Viagens PesquisarViagens(int Alterar) {
     int NumeroViagem; Viagens V;
     GotoXY(34,4);
     scanf("%d", &NumeroViagem);
     fseek(fpViagens, 0, SEEK_SET);
     while(fread(&V, sizeof(Viagens), 1, fpViagens)) {
         if(V.NumeroViagem == NumeroViagem)
+            if(Alterar == 1)Borda(32, 3, 60, 2, 0, 0);
             return V;
     }
     V.NumeroViagem = 0;
@@ -116,7 +117,7 @@ void AtivarViagens() {
         }
         if(Escolha == 2) {
             TelaViagens();
-            V = PesquisarViagens();
+            V = PesquisarViagens(0);
             if(V.NumeroViagem != 0)
                 ImprimirViagem(V);
             else {
@@ -129,7 +130,7 @@ void AtivarViagens() {
             system("PAUSE");
         }
         if(Escolha == 3) {
-            PesquisarViagens();
+            PesquisarViagens(1);
             V = DigitarViagens();
             AbrirArquivoViagens(V);
             fseek(fpViagens, -sizeof(Viagens), SEEK_CUR);

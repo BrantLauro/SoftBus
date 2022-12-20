@@ -46,13 +46,14 @@ void ImprimirCliente(Clientes C) {
     GotoXY(34, 17); printf("%s\n", C.Endereco);
 }
 
-Clientes PesquisarClientes() {
+Clientes PesquisarClientes(int Alterar) {
     char Nome[51]; Clientes C;
     GotoXY(34,8);
     scanf(" %[^\n]", Nome);
     fseek(fpClientes, 0, SEEK_SET);
     while(fread(&C, sizeof(Clientes), 1, fpClientes)) {
         if(strcmp(C.Nome, Nome) == 0)
+            if(Alterar == 1)Borda(32, 7, 60, 2, 0, 0);
             return C;
     }
     strcpy(C.Nome, "");
@@ -110,7 +111,7 @@ void AtivarClientes() {
         }
         if(Escolha == 1) {
             TelaClientes();
-            C = PesquisarClientes();
+            C = PesquisarClientes(0);
             if(strlen(C.Nome) > 0)
                 ImprimirCliente(C);
             else {
@@ -123,7 +124,7 @@ void AtivarClientes() {
             system("PAUSE");
         }
         if(Escolha == 2){
-            PesquisarClientes();
+            PesquisarClientes(1);
             C = DigitarClientes();
             AbrirArquivoClientes();
             fseek(fpClientes, -sizeof(Clientes), SEEK_CUR);
