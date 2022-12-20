@@ -39,18 +39,14 @@ int main() {
     do {
         TelaPrincipal();
         escolha = Menu(opcoes, x, y, escolha, 4);
-        if(escolha == 0){
+        if(escolha == 0)
             AtivarViagens();
-        }
-        if(escolha == 1) {
+        if(escolha == 1)
             AtivarClientes();
-        }
-        if(escolha == 2) {
+        if(escolha == 2)
             AtivarVendas();
-        }
-        if(escolha == 3) {
+        if(escolha == 3)
             break;
-        }
     } while(escolha != -1);
 
     GotoXY(0, 30);

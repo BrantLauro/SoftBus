@@ -20,7 +20,6 @@ void SalvarNovoCliente(Clientes C) {
     fseek(fpClientes, 0, SEEK_END);//Posiciona no fim do arquivo
     fwrite(&C, sizeof(Clientes), 1, fpClientes);//Grava
     fflush(fpClientes);
-    FecharArquivoClientes();
 }
 
 void FecharArquivoClientes() {
@@ -60,6 +59,7 @@ Clientes PesquisarClientes(int Alterar) {
     strcpy(C.Nome, "");
     return C;
 }
+
 /*
 int CarregarClientes(char Dados[][51]) {
     int n = 0;
@@ -124,12 +124,30 @@ void AtivarClientes() {
             GotoXY(36, 24);
             system("PAUSE");
         }
-        if(Escolha == 2){
-            PesquisarClientes(1);
-            C = DigitarClientes();
-            AbrirArquivoClientes();
-            fseek(fpClientes, -sizeof(Clientes), SEEK_CUR);
-            fwrite(&C, sizeof(Clientes), 1, fpClientes);
+        if(Escolha == 2) {
+            TelaClientes();
+            C = PesquisarClientes(1);
+            if(strlen(C.Nome) > 0) {
+                fseek(fpClientes, -sizeof(Clientes), SEEK_CUR);
+                C = DigitarClientes();
+                GotoXY(53, 22);
+                Borda(45, 23, 10, 2, 0, 0);
+                Borda(65, 23, 10, 2, 0, 0);
+                Escolha = 0;
+                Escolha = Menu(OpcoesConfirma, xConfirma, y, Escolha, 2);
+                if (Escolha == 0) {
+                    fwrite(&C, sizeof(Clientes), 1, fpClientes);
+                    fflush(fpClientes);
+                } else
+                    Escolha = 2;
+            } else {
+                Borda(49, 10, 25, 4, 1, 0);
+                GotoXY(52, 12);
+                printf("CLIENTE NAO CADASTRADO");
+                Borda(35, 23, 46, 2, 0, 0);
+                GotoXY(36, 24);
+                system("PAUSE");
+            }
         }
     } while(Escolha != 3);
     FecharArquivoClientes();
