@@ -3,6 +3,7 @@
 #include "configuracoes.h"
 
 FILE *fpViagens;
+FILE *fpConfiguracoesV;
 
 void AbrirArquivoViagens() {
     fpViagens = fopen("viagens.txt","rb+");
@@ -64,23 +65,28 @@ Viagens PesquisarViagens(int Alterar) {
     scanf("%d", &NumeroViagem);
     fseek(fpViagens, 0, SEEK_SET);
     while(fread(&V, sizeof(Viagens), 1, fpViagens)) {
-        if(V.NumeroViagem == NumeroViagem)
-            if(Alterar == 1)Borda(32, 3, 60, 2, 0, 0);
+        if(V.NumeroViagem == NumeroViagem) {
+            if (Alterar == 1) Borda(32, 3, 60, 2, 0, 0);
             return V;
+        }
     }
     V.NumeroViagem = 0;
     return V;
 }
 
 Viagens DigitarViagens() {
-    Viagens V;
+    Viagens V; Configuracoes C;
     GotoXY(34, 4); scanf("%d", &V.NumeroViagem);
     GotoXY(34, 7); scanf(" %[^\n]", V.LocalSaida);
     GotoXY(34, 10); scanf(" %[^\n]", V.LocalDestino);
     GotoXY(34, 13); scanf(" %[^\n]", V.DiaSaida);
     GotoXY(34, 16); scanf(" %[^\n]", V.HoraSaida);
     GotoXY(34, 19); scanf("%lf", &V.Quilometragem);
-    V.Preco = (V.Quilometragem * 1.5) + 2;
+    fpConfiguracoesV = fopen("configuracoes.txt","rb+");
+    fseek(fpConfiguracoesV, 0, SEEK_SET);
+    fread(&C, sizeof(Configuracoes), 1, fpConfiguracoesV);
+    V.Preco = (V.Quilometragem * C.TaxaKm) + C.TaxaEmbarque;
+    fclose(fpConfiguracoesV);
     return V;
 }
 
@@ -130,11 +136,29 @@ void AtivarViagens() {
             system("PAUSE");
         }
         if(Escolha == 3) {
-            PesquisarViagens(1);
-            V = DigitarViagens();
-            AbrirArquivoViagens(V);
-            fseek(fpViagens, -sizeof(Viagens), SEEK_CUR);
-            fwrite(&V, sizeof(Viagens), 1, fpViagens);
+            TelaViagens();
+            V = PesquisarViagens(1);
+            if(V.NumeroViagem != 0) {
+                fseek(fpViagens, -sizeof(Viagens), SEEK_CUR);
+                V = DigitarViagens();
+                GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
+                Borda(45, 23, 10, 2, 0, 0);
+                Borda(65, 23, 10, 2, 0, 0);
+                Escolha = 0;
+                Escolha = Menu(OpcoesConfirma, xConfirma, y, Escolha, 2);
+                if(Escolha == 0) {
+                    fwrite(&V, sizeof(Viagens), 1, fpViagens);
+                    fflush(fpViagens);
+                } else
+                    Escolha = 3;
+            } else {
+                Borda(49, 10, 25, 4, 1, 0);
+                GotoXY(52, 12);
+                printf("VIAGEM NAO CADASTRADA");
+                Borda(35, 23, 46, 2, 0, 0);
+                GotoXY(36, 24);
+                system("PAUSE");
+            }
         }
     } while(Escolha != 4);
     FecharArquivoViagens();
