@@ -3,10 +3,12 @@
 #include "viagens.h"
 #include "clientes.h"
 #include "interface.h"
+#include "configuracoes.h"
 
 FILE *fpVendas;
 FILE *fpClientesV;
 FILE *fpViagensV;
+FILE *fpConfiguracoesVen;
 
 void AbrirArquivoVendas() {
     fpVendas = fopen("vendas.txt","rb+");
@@ -76,7 +78,7 @@ Vendas PesquisarVendas() {
 }
 
 Vendas DigitarVenda() {
-    Vendas V; Clientes C; Viagens Vi; int Cliente = 0, OnibusExiste = 0;
+    Vendas V; Clientes C; Viagens Vi; Configuracoes Conf; int Cliente = 0, OnibusExiste = 0, PoltronaLivre = 0;
     GotoXY(34,4); scanf(" %[^\n]", V.Nome);
     fpClientesV = fopen("clientes.txt", "rb");
     fseek(fpClientesV, 0, SEEK_SET);
@@ -101,7 +103,7 @@ Vendas DigitarVenda() {
     }
     while(OnibusExiste != 1) {
         GotoXY(34, 16); scanf("%d", &V.Onibus);
-        fpViagensV = fopen("viagens.txt", "rb");
+        fpViagensV = fopen("viagens.txt", "rb+");
         fseek(fpViagensV, 0, SEEK_SET);
         while(fread(&Vi, sizeof(Viagens), 1, fpViagensV)) {
             if(Vi.NumeroViagem == V.Onibus) {
@@ -125,10 +127,35 @@ Vendas DigitarVenda() {
             GotoXY(35, 25);
             printf("                                                             ");
         }
-        fclose(fpViagensV);
     }
-    GotoXY(34, 19); scanf("%d", &V.Poltrona);
+    while(PoltronaLivre != 1) {
+        GotoXY(34, 19); scanf("%d", &V.Poltrona);
+        fpConfiguracoesVen = fopen("configuracoes.txt", "rb");
+        fseek(fpConfiguracoesVen, 0, SEEK_SET);
+        fread(&Conf, sizeof(Configuracoes), 1, fpConfiguracoesVen);
+        if ((Vi.VetorOnibus[V.Poltrona] != 1) && (V.Poltrona < Conf.TamanhoOnibus)) {
+            Vi.VetorOnibus[V.Poltrona] = 1;
+            PoltronaLivre = 1;
+            fseek(fpViagensV, -sizeof(Vi.VetorOnibus), SEEK_CUR);
+            fwrite(&Vi.VetorOnibus, sizeof(Vi.VetorOnibus), 1, fpViagensV);
+            fflush(fpViagensV);
+        } else {
+            GotoXY(34, 19);
+            printf("POLTRONA OCUPADA");
+            Borda(35, 23, 46, 2, 0, 0);
+            GotoXY(36, 24);
+            system("PAUSE");
+            Borda(32, 18, 60, 2, 0, 0);
+            GotoXY(35, 23);
+            printf("                                                             ");
+            GotoXY(35, 24);
+            printf("                                                             ");
+            GotoXY(35, 25);
+            printf("                                                             ");
+        }
+    }
     GotoXY(53, 22); printf("Preco = R$%.2lf", V.Valor);
+    fclose(fpViagensV);
     return V;
 }
 
