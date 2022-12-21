@@ -49,32 +49,54 @@ void TelaViagens() {
     Borda(32, 18, 60, 2, 0, 0);
 }
 
-void ImprimirViagem(Viagens V) {
-    GotoXY(34, 4); printf("%d", V.NumeroViagem);
-    GotoXY(34, 7); printf("%s", V.LocalSaida);
-    GotoXY(34, 10); printf("%s", V.LocalDestino);
-    GotoXY(34, 13); printf("%s", V.DiaSaida);
-    GotoXY(34, 16); printf("%s", V.HoraSaida);
-    GotoXY(34, 19); printf("%.2lf", V.Quilometragem);
-    GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
+void TelaPesquisa() {
+    Borda(3, 1, 111, 26, 1, 0);
+    GotoXY(16, 4);
+    printf("Destino:");
+    Borda(32, 3, 60, 2, 0, 0);
+    Borda(6, 6, 105, 20, 0, 0);
+}
+
+void ImprimirViagem(Viagens V, int y) {
+    Borda(8, (y - 1), 101, 2, 0, 0);
+    GotoXY(15, y); printf("Num: %d", V.NumeroViagem);
+    GotoXY(30, y); printf("Saida: %s", V.LocalSaida);
+    GotoXY(69, y); printf("Data: D %s | H %s ", V.DiaSaida, V.HoraSaida);
+    GotoXY(90, y); printf("Preco: R$%.2lf", V.Preco);
 }
 
 Viagens PesquisarViagens(int Alterar) {
-    int NumeroViagem; Viagens V;
-    GotoXY(34,4);
-    scanf("%d", &NumeroViagem);
+    int NumeroViagem, Encontrado = 0, yImprimir = 8, count = 0; char Destino[51]; Viagens V;
     fseek(fpViagens, 0, SEEK_SET);
-    while(fread(&V, sizeof(Viagens), 1, fpViagens)) {
-        if(V.NumeroViagem == NumeroViagem) {
-            if (Alterar == 1) Borda(32, 3, 60, 2, 0, 0);
-            return V;
+    GotoXY(34,4);
+    if(Alterar == 0) {
+        scanf(" %[^\n]", Destino);
+        while (fread(&V, sizeof(Viagens), 1, fpViagens)) {
+            if (strcmp(Destino, V.LocalDestino) == 0) {
+                ImprimirViagem(V, yImprimir);
+                Encontrado = 1;
+                yImprimir += 3;
+                count++;
+            }
+            if(count >= 5) yImprimir = 8;
         }
+        if (Encontrado == 0)
+            strcpy(V.LocalDestino, "");
+        return V;
+    } else if(Alterar == 1) {
+        scanf("%d", &NumeroViagem);
+        while (fread(&V, sizeof(Viagens), 1, fpViagens)) {
+            if (V.NumeroViagem == NumeroViagem) {
+                Borda(32, 3, 60, 2, 0, 0);
+                return V;
+            }
+        }
+        V.NumeroViagem = 0;
+        return V;
     }
-    V.NumeroViagem = 0;
-    return V;
 }
 
-Viagens DigitarViagens(int Alterar) {
+Viagens DigitarViagens(int Alterar, int Numero) {
     Viagens V; Configuracoes C;
     fpConfiguracoesV = fopen("configuracoes.txt","rb+");
     fseek(fpConfiguracoesV, 0, SEEK_SET);
@@ -84,7 +106,7 @@ Viagens DigitarViagens(int Alterar) {
         fseek(fpConfiguracoesV, -sizeof(C.SequenciaViagens), SEEK_CUR);
         fwrite(&C.SequenciaViagens, sizeof(C.SequenciaViagens), 1, fpConfiguracoesV);
         fclose(fpConfiguracoesV);
-    }
+    } else V.NumeroViagem = Numero;
     GotoXY(34, 4); printf("%d", V.NumeroViagem);
     GotoXY(34, 7); scanf(" %[^\n]", V.LocalSaida);
     GotoXY(34, 10); scanf(" %[^\n]", V.LocalDestino);
@@ -96,7 +118,7 @@ Viagens DigitarViagens(int Alterar) {
 }
 
 void AtivarViagens() {
-    int Escolha = 0; Viagens V; Configuracoes Conf;
+    int Escolha = 0; Viagens V;
     char Opcoes[][51] = {"Novo", "Configuracoes", "Pesquisar", "Alterar", "Sair"};
     char OpcoesConfirma[][51] = {"Confirma", "Cancelar"};
     AbrirArquivoViagens();
@@ -113,7 +135,7 @@ void AtivarViagens() {
         Escolha = Menu(Opcoes, x, y, Escolha, 5);
         if(Escolha == 0){
             TelaViagens();
-            V = DigitarViagens(0);
+            V = DigitarViagens(0, -1);
             GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
             Borda(45, 23, 10, 2, 0, 0);
             Borda(65, 23, 10, 2, 0, 0);
@@ -127,14 +149,12 @@ void AtivarViagens() {
             AtivarConfiguracoes();
         }
         if(Escolha == 2) {
-            TelaViagens();
+            TelaPesquisa();
             V = PesquisarViagens(0);
-            if(V.NumeroViagem != 0)
-                ImprimirViagem(V);
-            else {
-                Borda(49, 10, 25, 4, 1, 0);
-                GotoXY(52, 12);
-                printf("VIAGEM NAO CADASTRADA");
+            if(strlen(V.LocalDestino) <= 0) {
+                Borda(41, 13, 34, 4, 1, 0);
+                GotoXY(43, 15);
+                printf("NAO HA VIAGENS PARA ESSE DESTINO");
             }
             Borda(35, 23, 46, 2, 0, 0);
             GotoXY(36, 24);
@@ -145,7 +165,7 @@ void AtivarViagens() {
             V = PesquisarViagens(1);
             if(V.NumeroViagem != 0) {
                 fseek(fpViagens, -sizeof(Viagens), SEEK_CUR);
-                V = DigitarViagens(1);
+                V = DigitarViagens(1, V.NumeroViagem);
                 GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
                 Borda(45, 23, 10, 2, 0, 0);
                 Borda(65, 23, 10, 2, 0, 0);

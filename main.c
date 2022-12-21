@@ -34,6 +34,7 @@ void TelaPrincipal () {
     GotoXY(28, 20); printf("             '-'                          '-'");
 }
 
+
 int main() {
     int escolha = 0;
     do {
