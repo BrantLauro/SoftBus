@@ -56,6 +56,7 @@ Configuracoes DigitarConfiguracoes() {
     GotoXY(60, 8); scanf("%lf", &Conf.TaxaKm);
     GotoXY(60, 11); scanf("%lf", &Conf.TaxaEmbarque);
     GotoXY(57, 14); scanf("%d", &Conf.TamanhoOnibus);
+    if(MODO == 0) Conf.SequenciaViagens = 0;
     return Conf;
 }
 

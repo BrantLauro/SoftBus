@@ -14,7 +14,7 @@ struct viagens {
 typedef struct viagens Viagens;
 
 void TelaViagens();
-Viagens DigitarViagens();
+Viagens DigitarViagens(int Alterar);
 void ImprimirViagem(Viagens V);
 Viagens PesquisarViagens(int Alterar);
 void AtivarViagens();

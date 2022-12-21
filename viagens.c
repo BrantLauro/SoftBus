@@ -74,19 +74,24 @@ Viagens PesquisarViagens(int Alterar) {
     return V;
 }
 
-Viagens DigitarViagens() {
+Viagens DigitarViagens(int Alterar) {
     Viagens V; Configuracoes C;
-    GotoXY(34, 4); scanf("%d", &V.NumeroViagem);
+    fpConfiguracoesV = fopen("configuracoes.txt","rb+");
+    fseek(fpConfiguracoesV, 0, SEEK_SET);
+    fread(&C, sizeof(Configuracoes), 1, fpConfiguracoesV);
+    if(Alterar == 0) {
+        V.NumeroViagem = ++C.SequenciaViagens;
+        fseek(fpConfiguracoesV, -sizeof(C.SequenciaViagens), SEEK_CUR);
+        fwrite(&C.SequenciaViagens, sizeof(C.SequenciaViagens), 1, fpConfiguracoesV);
+        fclose(fpConfiguracoesV);
+    }
+    GotoXY(34, 4); printf("%d", V.NumeroViagem);
     GotoXY(34, 7); scanf(" %[^\n]", V.LocalSaida);
     GotoXY(34, 10); scanf(" %[^\n]", V.LocalDestino);
     GotoXY(34, 13); scanf(" %[^\n]", V.DiaSaida);
     GotoXY(34, 16); scanf(" %[^\n]", V.HoraSaida);
     GotoXY(34, 19); scanf("%lf", &V.Quilometragem);
-    fpConfiguracoesV = fopen("configuracoes.txt","rb+");
-    fseek(fpConfiguracoesV, 0, SEEK_SET);
-    fread(&C, sizeof(Configuracoes), 1, fpConfiguracoesV);
     V.Preco = (V.Quilometragem * C.TaxaKm) + C.TaxaEmbarque;
-    fclose(fpConfiguracoesV);
     return V;
 }
 
@@ -108,7 +113,7 @@ void AtivarViagens() {
         Escolha = Menu(Opcoes, x, y, Escolha, 5);
         if(Escolha == 0){
             TelaViagens();
-            V = DigitarViagens();
+            V = DigitarViagens(0);
             GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
             Borda(45, 23, 10, 2, 0, 0);
             Borda(65, 23, 10, 2, 0, 0);
@@ -140,7 +145,7 @@ void AtivarViagens() {
             V = PesquisarViagens(1);
             if(V.NumeroViagem != 0) {
                 fseek(fpViagens, -sizeof(Viagens), SEEK_CUR);
-                V = DigitarViagens();
+                V = DigitarViagens(1);
                 GotoXY(53, 22); printf("Preco = R$%.2lf", V.Preco);
                 Borda(45, 23, 10, 2, 0, 0);
                 Borda(65, 23, 10, 2, 0, 0);

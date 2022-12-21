@@ -5,6 +5,7 @@ struct configuracoes {
     double TaxaKm;
     double TaxaEmbarque;
     int TamanhoOnibus;
+    int SequenciaViagens;
 };
 typedef struct configuracoes Configuracoes;
 
