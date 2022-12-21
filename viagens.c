@@ -91,7 +91,7 @@ Viagens DigitarViagens() {
 }
 
 void AtivarViagens() {
-    int Escolha = 0; Viagens V;
+    int Escolha = 0; Viagens V; Configuracoes Conf;
     char Opcoes[][51] = {"Novo", "Configuracoes", "Pesquisar", "Alterar", "Sair"};
     char OpcoesConfirma[][51] = {"Confirma", "Cancelar"};
     AbrirArquivoViagens();

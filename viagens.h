@@ -9,6 +9,7 @@ struct viagens {
     char HoraSaida[51];
     double Quilometragem;
     double Preco;
+    int VetorOnibus[50];
 };
 typedef struct viagens Viagens;
 
