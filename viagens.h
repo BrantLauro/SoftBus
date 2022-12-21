@@ -5,8 +5,8 @@ struct viagens {
     int NumeroViagem;
     char LocalSaida[51];
     char LocalDestino[51];
-    char DiaSaida[51];
-    char HoraSaida[51];
+    int DiaSaida;
+    int HoraSaida;
     double Quilometragem;
     double Preco;
     int VetorOnibus[50];

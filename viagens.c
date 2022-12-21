@@ -110,8 +110,15 @@ Viagens DigitarViagens(int Alterar, int Numero) {
     GotoXY(34, 4); printf("%d", V.NumeroViagem);
     GotoXY(34, 7); scanf(" %[^\n]", V.LocalSaida);
     GotoXY(34, 10); scanf(" %[^\n]", V.LocalDestino);
-    GotoXY(34, 13); scanf(" %[^\n]", V.DiaSaida);
-    GotoXY(34, 16); scanf(" %[^\n]", V.HoraSaida);
+    V.DiaSaida = 0; V.HoraSaida = -1;
+    while(V.DiaSaida < 1 || V.DiaSaida > 31){
+        Borda(32, 12, 60, 2, 0, 0);
+        GotoXY(34, 13); scanf(" %d", &V.DiaSaida);
+    }
+    while(V.HoraSaida < 0 || V.HoraSaida > 24) {
+        Borda(32, 15, 60, 2, 0, 0);
+        GotoXY(34, 16); scanf(" %d", &V.HoraSaida);
+    }
     GotoXY(34, 19); scanf("%lf", &V.Quilometragem);
     V.Preco = (V.Quilometragem * C.TaxaKm) + C.TaxaEmbarque;
     return V;
