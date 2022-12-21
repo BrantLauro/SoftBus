@@ -60,20 +60,6 @@ Clientes PesquisarClientes(int Alterar) {
     return C;
 }
 
-/*
-int CarregarClientes(char Dados[][51]) {
-    int n = 0;
-    Clientes C;
-
-    fseek(fpClientes, 0, SEEK_SET);
-
-    while(fread(&C, sizeof(Clientes), 1, fpClientes)){
-        strcpy(Dados[n], C.Nome);
-        n++;
-    }
-    return n;
-} */
-
 Clientes DigitarClientes() {
     Clientes C;
     GotoXY(34,8); scanf(" %[^\n]", C.Nome);
@@ -152,3 +138,17 @@ void AtivarClientes() {
     } while(Escolha != 3);
     FecharArquivoClientes();
 }
+
+/*
+int CarregarClientes(char Dados[][51]) {
+    int n = 0;
+    Clientes C;
+
+    fseek(fpClientes, 0, SEEK_SET);
+
+    while(fread(&C, sizeof(Clientes), 1, fpClientes)){
+        strcpy(Dados[n], C.Nome);
+        n++;
+    }
+    return n;
+} */
