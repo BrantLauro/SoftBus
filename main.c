@@ -34,6 +34,8 @@ void TelaPrincipal () {
     GotoXY(28, 20); printf("             '-'                          '-'");
 }
 
+// Branch Polimento Iniciada
+
 int main() {
     int escolha = 0;
     do {
