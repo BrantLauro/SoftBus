@@ -61,7 +61,7 @@ void ImprimirViagem(Viagens V, int y) {
     Borda(8, (y - 1), 101, 2, 0, 0);
     GotoXY(15, y); printf("Num: %d", V.NumeroViagem);
     GotoXY(30, y); printf("Saida: %s", V.LocalSaida);
-    GotoXY(69, y); printf("Data: D %s | H %s ", V.DiaSaida, V.HoraSaida);
+    GotoXY(69, y); printf("Data: D %d | H %d ", V.DiaSaida, V.HoraSaida);
     GotoXY(90, y); printf("Preco: R$%.2lf", V.Preco);
 }
 
