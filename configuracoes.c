@@ -57,6 +57,11 @@ Configuracoes DigitarConfiguracoes() {
     GotoXY(60, 11); scanf("%lf", &Conf.TaxaEmbarque);
     GotoXY(57, 14); scanf("%d", &Conf.TamanhoOnibus);
     if(MODO == 0) Conf.SequenciaViagens = 0;
+    else {
+        fseek(fpConfiguracoes, -sizeof(Conf.SequenciaViagens), SEEK_CUR);
+        fread(&Conf.SequenciaViagens, sizeof(Conf.SequenciaViagens), 1, fpConfiguracoes);
+    }
+    fseek(fpConfiguracoes, 0, SEEK_SET);
     return Conf;
 }
 
