@@ -13,11 +13,12 @@ struct vendas {
 typedef struct vendas Vendas;
 
 void AbrirArquivoVendas();
-void SalvarNovoVendas(Vendas C);
+void SalvarNovaVenda(Vendas C);
 void FecharArquivoVendas();
 void TelaVendas();
-void ImprimirVendas(Vendas V);
-Vendas PesquisarVendas();
+void TelaPesquisaVendas();
+void ImprimirVendas(Vendas V, int y);
+Vendas PesquisarVendas(int Alterar);
 Vendas DigitarVenda();
 void AtivarVendas();
 
