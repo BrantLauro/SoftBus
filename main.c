@@ -4,7 +4,7 @@
 #include "clientes.h"
 #include "vendas.h"
 
-char opcoes[][51] = {"Viagens",  "Clientes", "Vendas", "Fechar" };
+char opcoes[][51] = {"Viagens",  "Clientes", "Vendas", "Fechar\n" };
 int x[] = {18, 43, 68, 93};
 int y[] = {24, 24, 24, 24};
 
@@ -49,7 +49,6 @@ int main() {
         if(escolha == 3)
             break;
     } while(escolha != -1);
-
-    GotoXY(0, 30);
+    GotoXY(0, 45);
     return  0;
 }

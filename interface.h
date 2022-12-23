@@ -20,7 +20,6 @@
 #define TEC_PAGE_UP 1073
 #define TEC_PAGE_DOWN 1081
 
-
 enum DOS_COLORS {
     BLACK, BLUE, GREEN, CYAN, RED, MAGENTA, BROWN,
     LIGHT_GRAY, DARK_GRAY, LIGHT_BLUE, LIGHT_GREEN, LIGHT_CYAN,
@@ -32,6 +31,5 @@ void GotoXY(int x, int y);
 void TextColoreback(int letras, int fundo);
 void Borda(int x, int y, int largura, int altura, int tipo, int sombra);
 int Menu(char opcoes[][51], int x[], int y[], int opcao, int n);
-
 
 #endif //SOFTBUS_INTERFACE_H

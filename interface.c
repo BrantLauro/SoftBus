@@ -16,20 +16,6 @@ int GetTecla(){
     return ch;
 }
 
-/*void TextColor (int iColor){
-    HANDLE hl = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
-    bufferInfo.wAttributes &= 0x00F0;
-    SetConsoleTextAttribute (hl, bufferInfo.wAttributes |= iColor);
-}
-
-void TextBackground (int iColor){
-    HANDLE hl = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
-    bufferInfo.wAttributes &= 0x000F;
-    SetConsoleTextAttribute (hl, bufferInfo.wAttributes |= (iColor << 4));
-}*/
-
 void TextColoreback(int letras, int fundo){/*para mudar a cor de fundo mude o background*/
     SetConsoleTextAttribute (GetStdHandle (STD_OUTPUT_HANDLE),
                              letras + (fundo << 4));
