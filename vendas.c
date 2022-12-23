@@ -54,26 +54,44 @@ void TelaVendas() {
     Borda(32, 18, 60, 2, 0, 0);
 }
 
-void ImprimirVendas(Vendas V) {
-    GotoXY(34, 4); printf("%s", V.Nome);
-    GotoXY(34, 7); printf("%s", V.CPF);
-    GotoXY(34, 10); printf("%s", V.Telefone);
-    GotoXY(34, 13); printf("%s", V.Endereco);
-    GotoXY(34, 16); printf("%d", V.Onibus);
-    GotoXY(34, 19); printf("%d", V.Poltrona);
-    GotoXY(53, 22); printf("Preco = R$%.2lf", V.Valor);
+void TelaPesquisaVendas() {
+    Borda(3, 1, 111, 26, 1, 0);
+    GotoXY(16, 4);
+    printf("Nome:");
+    Borda(32, 3, 60, 2, 0, 0);
+    Borda(6, 6, 105, 20, 0, 0);
 }
 
-Vendas PesquisarVendas() {
-    char Nome[51]; Vendas V;
+void ImprimirVendas(Vendas V, int y) {
+    Viagens Vi;
+    Borda(8, (y - 1), 101, 2, 0, 0);
+    GotoXY(12, y); printf("CPF: %s", V.CPF);
+    fpViagensV = fopen("Viagens.txt", "rb");
+    fseek(fpViagensV, 0, SEEK_SET);
+    while(fread(&Vi, sizeof(Viagens), 1, fpViagensV)){
+        if(V.Onibus == Vi.NumeroViagem)break;
+    }
+    GotoXY(36, y); printf("Destino: %s", Vi.LocalDestino);
+    GotoXY(77, y); printf("Onibus: %d | %d", V.Onibus, V.Poltrona);
+    GotoXY(92, y); printf("Preco = R$%.2lf", V.Valor);
+}
+
+Vendas PesquisarVendas(int Alterar) {
+    int NumeroVendas, Encontrado = 0, yImprimir = 8, count = 0; char Nome[51]; Vendas V;
+    fseek(fpVendas, 0, SEEK_SET);
     GotoXY(34,4);
     scanf(" %[^\n]", Nome);
-    fseek(fpVendas, 0, SEEK_SET);
     while(fread(&V, sizeof(Vendas), 1, fpVendas)) {
-        if(strcmp(V.Nome, Nome) == 0)
-            return V;
+        if(strcmp(V.Nome, Nome) == 0){
+            ImprimirVendas(V, yImprimir);
+            Encontrado = 1;
+            yImprimir += 3;
+            count++;
+        }
+        if(count >= 5) yImprimir = 8;
     }
-    strcpy(V.Nome, "");
+    if(Encontrado == 0)
+        strcpy(V.Nome, "");
     return V;
 }
 
@@ -188,14 +206,12 @@ void AtivarVendas() {
                 Escolha = 0;
         }
         if(Escolha == 1) {
-            TelaVendas();
-            V = PesquisarVendas();
-            if(strlen(V.Nome) > 0)
-                ImprimirVendas(V);
-            else {
-                Borda(49, 10, 25, 4, 1, 0);
-                GotoXY(52, 12);
-                printf("VENDA NAO FINALIZADA");
+            TelaPesquisaVendas();
+            V = PesquisarVendas(0);
+            if(strlen(V.Nome) <= 0) {
+                Borda(41, 13, 34, 4, 1, 0);
+                GotoXY(43, 15);
+                printf("NAO HA VENDAS COM ESSE CLIENTE");
             }
             Borda(35, 23, 46, 2, 0, 0);
             GotoXY(36, 24);
@@ -204,18 +220,3 @@ void AtivarVendas() {
     } while(Escolha != 2);
     FecharArquivoVendas();
 }
-
-/*
-int CarregarVendas(char Dados[][51]) {
-    int n = 0;
-    Vendas V;
-
-    fseek(fpVendas, 0, SEEK_SET);
-
-    while(fread(&V, sizeof(Vendas), 1, fpVendas)){
-        strcpy(Dados[n], V.Nome);
-        n++;
-    }
-    return n;
-}*/
-
